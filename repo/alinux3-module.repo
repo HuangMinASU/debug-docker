@@ -1,0 +1,11 @@
+# alinux3-module.repo
+#
+
+[alinux3-module]
+name=alinux3-module
+baseurl=http://mirrors.aliyun.com/alinux/3/module/$basearch/
+#baseurl=http://mirrors.cloud.aliyuncs.com/alinux/3/module/$basearch/
+gpgkey=http://mirrors.aliyun.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+#gpgkey=http://mirrors.cloud.aliyuncs.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+enabled=1
+gpgcheck=1

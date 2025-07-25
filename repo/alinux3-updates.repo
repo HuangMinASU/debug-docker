@@ -1,0 +1,12 @@
+# alinux3-updates.repo
+#
+
+[alinux3-updates]
+name=alinux3-updates
+baseurl=http://mirrors.aliyun.com/alinux/3/updates/$basearch/
+#baseurl=http://mirrors.cloud.aliyuncs.com/alinux/3/updates/$basearch/
+gpgkey=http://mirrors.aliyun.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+#gpgkey=http://mirrors.cloud.aliyuncs.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+enabled=1
+gpgcheck=1
+

@@ -1,0 +1,15 @@
+[epel]
+name=Extra Packages for Enterprise Linux 8 - $basearch
+baseurl=http://mirrors.aliyun.com/epel/8/Everything/$basearch
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/epel/RPM-GPG-KEY-EPEL-8
+
+[epel-module]
+name=Extra Packages for Enterprise Linux 8 - $basearch
+baseurl=http://mirrors.aliyun.com/epel/8/Modular/$basearch
+failovermethod=priority
+enabled=0
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/epel/RPM-GPG-KEY-EPEL-8

@@ -1,0 +1,11 @@
+# alinux3-os.repo
+#
+
+[alinux3-plus]
+name=alinux3-plus
+baseurl=http://mirrors.aliyun.com/alinux/3/plus/$basearch/
+#baseurl=http://mirrors.cloud.aliyuncs.com/alinux/3/plus/$basearch/
+gpgkey=http://mirrors.aliyun.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+# gpgkey=http://mirrors.cloud.aliyuncs.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+enabled=1
+gpgcheck=1

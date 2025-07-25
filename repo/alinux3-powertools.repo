@@ -1,0 +1,11 @@
+# alinux3-powertools.repo
+#
+
+[alinux3-powertools]
+name=alinux3-powertools
+baseurl=http://mirrors.aliyun.com/alinux/3/powertools/$basearch/
+# baseurl=http://mirrors.cloud.aliyuncs.com/alinux/3/powertools/$basearch/
+gpgkey=http://mirrors.aliyun.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+# gpgkey=http://mirrors.cloud.aliyuncs.com/alinux/3/RPM-GPG-KEY-ALINUX-3
+enabled=1
+gpgcheck=1
