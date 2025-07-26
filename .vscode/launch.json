@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Remote Debug",
+            "type": "/usr/bin/go",
+            "request": "attach",
+            "mode": "remote",
+            "remotePath": "${workspaceFolder}",
+            "host": "192.168.0.100",
+            "port": 2345,
+            "program": "/app"
+        }
+    ]
+}

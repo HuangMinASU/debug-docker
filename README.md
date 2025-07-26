@@ -1,4 +1,14 @@
 # DockerDebug
+go install github.com/go-delve/delve/cmd/dlv@latest
+min@ubuntu:~/code/debug-docker$ echo 'export PATH=$PATH:$HOME/go/bin' >> ~/.bashrc
+min@ubuntu:~/code/debug-docker$ source ~/.bashrc
+
+min@ubuntu:~/code/debug-docker$ dlv debug main.go 
+Type 'help' for list of commands.
+(dlv) 
+
+
+
 docker 调试
 
 docker run --rm -v /home/min/code:/app -w /app alibaba-cloud-linux-3-registry.cn-hangzhou.cr.aliyuncs.com/alinux3/golang:1.19.4 go build

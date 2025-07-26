@@ -70,6 +70,16 @@ WORKDIR /app
 # 复制你的 Go 应用程序代码到容器中
 COPY . .
 
+RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
+# 检查 Go 环境
+RUN echo "Go Environment:" && go env
+
+# 检查 Go 版本
+RUN echo "Go Version:" && go version
+
+# 安装 delve
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
+
 # 将 Go proxy 设置为 Aliyun 镜像
 # RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
 # # 可选：验证代理是否设置成功

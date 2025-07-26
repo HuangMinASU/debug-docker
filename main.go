@@ -27,7 +27,25 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		fmt.Println("Received JSON data:", data)
-		fmt.Fprintf(w, "Post request successful")
+
+		// 创建响应对象
+		response := map[string]interface{}{
+			"code": 200,
+			"msg":  "success, me get json",
+		}
+
+		// 设置响应 header 的 content type 为 application/json
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK) // 设置状态码为200
+
+		// 返回响应
+		jsonResponse, err := json.Marshal(response)
+		if err != nil {
+			http.Error(w, "Failed to generate JSON response", http.StatusInternalServerError)
+			return
+		}
+		w.Write(jsonResponse)
+
 	} else {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 	}
