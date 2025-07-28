@@ -68,3 +68,5 @@ RUN go build -gcflags "all=-N -l" -o myapp
 # CMD ["/bin/bash", "-c", "/usr/sbin/sshd -D & tail -f /dev/null"]
 #          dlv debug --listen=:2345 --headless=true --api-version=2 your_program
 CMD ["/bin/bash", "-c", "/usr/sbin/sshd -D & dlv debug --listen=:8080 --headless=true --api-version=2 --log myapp & tail -f /dev/null"]
+
+# 在容器上手动执行 dlv debug --listen=:8080 --headless=true --api-version=2 --log myapp 运行调试器

@@ -69,7 +69,7 @@ func main() {
 	// 设置监听的端口并启动服务
 	port := ":8080"
 	fmt.Printf("Starting server on port %s\n", port)
-	
+
 	// ListenAndServe 使用指定的TCP地址和handler启动一个HTTP服务器
 	// 第二个参数通常写nil表示使用DefaultServeMux
 	err := http.ListenAndServe(port, nil)
