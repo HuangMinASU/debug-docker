@@ -1,0 +1,33 @@
+这个错误信息提示你需要连接到一个符合 DAP（Debug Adapter Protocol）的 `dlv --headless` 服务器，并且版本必须是 v1.7.3 或更高版本。如果使用旧版本，会出现 `rpc:invalid character 'C' looking for beginning of value` 错误。
+
+要解决这个问题，你需要执行以下步骤：
+
+1. **更新Delve：** 确保你使用的是 Delve 的最新版本或至少 v1.7.3 以上的版本。你可以使用以下命令来更新：
+
+   ```bash
+   go install github.com/go-delve/delve/cmd/dlv@latest
+   ```
+
+   或者，更新到指定的版本：
+
+   ```bash
+   go install github.com/go-delve/delve/cmd/dlv@v1.7.3
+   ```
+
+2. **配置DAP服务器：** 确保你的启动命令使用了 `--headless` 模式以及通过 DAP 支持的连接参数。通常，你的启动命令看起来应该像这样：
+
+   ```bash
+   dlv dap
+   ```
+
+   或是结合具体的调试参数，比如指定程序路径：
+
+   ```bash
+   dlv dap --listen=:port --log --log-output=dap,rpc <your-program>
+   ```
+
+3. **检查环境配置：** 确认你的开发环境（如 VSCode with Go plugin）已经正确配置为使用 DAP 与 Delve 进行通信。如果有 Go 扩展或插件，请确保它们是最新版。
+
+4. **验证连接：** 如果你仍然遇到问题，检查通信端口、网络配置，确保没有防火墙或其他网络问题阻止连接。
+
+完成这些步骤后，通常应该能够解决与 Delve 及其 DAP 兼容性相关的问题。如果问题仍然存在，建议查看 Delve 的官方文档或相关的 GitHub 讨论来获取更多的支持和信息。
