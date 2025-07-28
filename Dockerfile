@@ -1,6 +1,7 @@
 FROM docker.xuanyuan.run/library/ubuntu:plucky
 
 RUN apt-get update && apt-get install -y vim curl wget net-tools openssh-server openssl git
+RUN apt-get install -y iproute2
 
 # 安装 Go 语言
 RUN apt-get install -y golang-go
@@ -8,6 +9,7 @@ RUN apt-get install -y golang-go
 # 设置 Go 环境变量，以确保 Go 的 bin 目录在 PATH 中
 ENV GOPATH=/root/go
 ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 
 # 由于 Ubuntu 下可能 GOPATH 默认没有设置，这里确保它被设置
 RUN mkdir -p $GOPATH
@@ -25,8 +27,8 @@ RUN echo "PATH is $PATH" && which dlv && dlv version
 
 RUN chmod 600 /etc/ssh/ssh_host_*_key
 
-# 修改 SSH 配置以使用端口 5555
-RUN sed -i 's/^#Port 22/Port 5555/' /etc/ssh/sshd_config
+# 修改 SSH 配置以使用端口 2222
+RUN sed -i 's/^#Port 22/Port 2222/' /etc/ssh/sshd_config
 
 # 启动 SSH 服务
 RUN systemctl enable sshd
@@ -36,7 +38,8 @@ RUN systemctl enable sshd
 RUN useradd -m min && echo "min:123456" | chpasswd && echo "min ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # 暴露端口 5555
-EXPOSE 5555
+EXPOSE 2222
+EXPOSE 8080
 
 # Ensure the .ssh directory exists in the image
 RUN mkdir -p /root/.ssh
@@ -57,8 +60,11 @@ WORKDIR /app
 # 复制你的 Go 应用程序代码到容器中
 COPY . .
 
-RUN go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 # 构建应用程序，确保编译为可调试的模式
 RUN go build -gcflags "all=-N -l" -o myapp
+#  go build -gcflags "all=-N -l" -buildvcs=false -o myapp 报错时备用命令
+
+
 # CMD ["/bin/bash", "-c", "/usr/sbin/sshd -D & tail -f /dev/null"]
-CMD ["/bin/bash", "-c", "/usr/sbin/sshd -D & dlv debug --headless --listen=:2345 --api-version=2 --log myapp & tail -f /dev/null"]
+#          dlv debug --listen=:2345 --headless=true --api-version=2 your_program
+CMD ["/bin/bash", "-c", "/usr/sbin/sshd -D & dlv debug --listen=:8080 --headless=true --api-version=2 --log myapp & tail -f /dev/null"]

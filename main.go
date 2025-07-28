@@ -10,7 +10,7 @@ import (
 
 // handler 是一个简单的 HTTP 请求处理函数
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, this is the Go service listening on port 2345!")
+	fmt.Fprintf(w, "Hello, this is the Go service listening on port 8080!")
 }
 
 // postHandler 处理 POST 请求，打印接收到的 JSON 数据
@@ -67,7 +67,7 @@ func main() {
 	http.HandleFunc("/hello", helloHandler)
 
 	// 设置监听的端口并启动服务
-	port := ":2345"
+	port := ":8080"
 	fmt.Printf("Starting server on port %s\n", port)
 	
 	// ListenAndServe 使用指定的TCP地址和handler启动一个HTTP服务器

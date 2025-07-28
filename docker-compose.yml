@@ -1,0 +1,14 @@
+services:
+  myapp:
+    image: my-go-app:latest
+    networks:
+      my_custom_network:
+        ipv4_address: 192.168.0.201
+
+networks:
+  my_custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+
