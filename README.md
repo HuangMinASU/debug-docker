@@ -65,3 +65,51 @@ root@ubuntu22:/home/min/code/DockerDebug# git commit -m "你的提交信息"
  create mode 100644 repo/alinux3-updates.repo
  create mode 100644 repo/epel.repo
 
+
+
+
+
+### 使用说明：
+
+1. 确保脚本`install_go.sh`文件和目录结构如下：
+   ```
+   ├── install_go.sh
+   └── pkg
+       └── go1.24.5.linux-amd64.tar.gz
+   ```
+
+2. 赋予脚本执行权限：
+   ```bash
+   chmod +x install_go.sh
+   ```
+
+3. 执行脚本：
+   ```bash
+   ./install_go.sh
+   ```
+
+该脚本加载时会检查`pkg`目录下是否存在`go1.24.5.linux-amd64.tar.gz`文件，然后按需解压文件并配置环境变量。如果行已存在，则不会重复添加环境变量设置。
+
+
+
+
+### 使用说明：
+
+1. 确保脚本`install_jdk.sh`文件和目录结构如下：
+   ```
+   ├── install_jdk.sh
+   └── pkg
+       └── jdk-17.0.12_linux-x64_bin.tar.gz
+   ```
+
+2. 赋予脚本执行权限：
+   ```bash
+   chmod +x install_jdk.sh
+   ```
+
+3. 执行脚本：
+   ```bash
+   ./install_jdk.sh
+   ```
+
+脚本会解压相应的JDK文件到你的主目录中的`jdk`目录，并在你的shell配置文件中设置`PATH`和`JAVA_HOME`环境变量。这样就可以直接从命令行使用`java`命令来检查安装是否成功。
